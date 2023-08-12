@@ -1,0 +1,64 @@
+<script src="qrcode.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", (event) => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const myParam = urlParams.get('qrcode');
+    const
+      createsvgNode = (msg, size) => QRCode({
+
+        msg: msg
+        , dim: size
+        , pad: 6
+        , mtx: 7
+        , ecl: "H"
+        , ecb: 0
+        , pal: ["#000000", "#ffffff"]
+        , vrb: 1
+
+      });
+
+    const svgNodes = [200, 300, 400].map((size) => {
+      const div = document.createElement("div");
+      div.classList.add('qrcode');
+      div.appendChild(createsvgNode(myParam, size));
+      return div;
+    });
+
+    for (var svgNode of svgNodes) {
+      document.querySelector('body').appendChild(svgNode);
+    }
+  });
+
+</script>
+
+<style>
+  @page {
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+
+
+    margin: 0;
+    padding: 0;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .qrcode {
+    padding: 5px 0;
+  }
+
+  @media print {
+    div {
+      /* background: blue; */
+    }
+
+  }
+</style>
+
+<body>
+
+  <div>QR Codes generator</div>>
+</body>
