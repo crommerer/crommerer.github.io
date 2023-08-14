@@ -98,7 +98,6 @@
 
   #output {
     box-sizing: border-box;
-    padding: 1.5cm;
   }
 
   .qrcodes {
@@ -129,6 +128,7 @@
     #output.enabled {
       width: 21cm;
       height: 29.7cm;
+      padding: 1.5cm;
       box-shadow: 0 0 1cm rgba(0, 0, 0, 0.3);
       transform: scale(0.3);
       transform-origin: 0 0;
@@ -136,8 +136,7 @@
   }
 
   @page {
-    margin: 0;
-    padding: 0;
+    margin: 1.5cm !important;
   }
 
   @media print {
