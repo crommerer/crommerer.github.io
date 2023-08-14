@@ -1,64 +1,162 @@
+<title>Générateur de QR Codes à imprimer</title>
+<meta charset="UTF-8">
+<!-- https://github.com/datalog/qrcode-svg -->
 <script src="qrcode.min.js"></script>
+
 <script>
-  document.addEventListener("DOMContentLoaded", (event) => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const myParam = urlParams.get('qrcode');
-    const
-      createsvgNode = (msg, size) => QRCode({
+  function addSvg(div, msg) {
+    const svg = QRCode({
+      msg: msg,
+      dim: 100,
+      pad: 0,
+      mtx: 7,
+      ecl: "H",
+      ecb: 0,
+      pal: ["#000000", "#ffffff"],
+      vrb: 1,
+    });;
+    div.appendChild(svg);
+  }
 
-        msg: msg
-        , dim: size
-        , pad: 6
-        , mtx: 7
-        , ecl: "H"
-        , ecb: 0
-        , pal: ["#000000", "#ffffff"]
-        , vrb: 1
+  function addLogo(div) {
+    const logo = document.createElement("img");
+    logo.src = 'images/gourlano-logo.svg';
+    div.appendChild(logo);
+  }
 
-      });
+  function getQRDiv(msg, size) {
+    const div = document.createElement("div");
+    div.style.width = `${size}cm`;
+    div.classList.add('qrcode');
+    addSvg(div, msg);
+    addLogo(div);
+    return div;
+  }
 
-    const svgNodes = [200, 300, 400].map((size) => {
-      const div = document.createElement("div");
-      div.classList.add('qrcode');
-      div.appendChild(createsvgNode(myParam, size));
-      return div;
-    });
-
-    for (var svgNode of svgNodes) {
-      document.querySelector('body').appendChild(svgNode);
+  function getQRRow(msg, sizes) {
+    const div = document.createElement("div");
+    div.classList.add('qrcodes');
+    for (const size of sizes) {
+      div.appendChild(getQRDiv(msg, size));
     }
+    return div;
+  }
+
+  function getQRRows(msg) {
+    const divs = [
+      [2, 2, 2, 2],
+      [3, 3, 3],
+      [4, 4],
+      [6],
+    ].map((sizes) => getQRRow(msg, sizes));
+    return divs;
+  }
+
+  function generateQRCodes(msg) {
+    const divs = getQRRows(msg);
+    for (const div of divs) {
+      document.querySelector('#output').appendChild(div);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", (_) => {
+    const input = document.querySelector('input');
+    const output = document.querySelector('#output');
+    const button = document.querySelector('button');
+
+    input.addEventListener('input', (event) => {
+      const text = event.target.value.trim();
+      const enabled = text.length > 0;
+
+      output.replaceChildren();
+
+      if (enabled) {
+        button.disabled = false;
+        output.classList = ['enabled'];
+        generateQRCodes(event.target.value);
+      } else {
+        button.disabled = true;
+        output.classList = [];
+      }
+    })
   });
 
 </script>
 
 <style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+  }
+
+  #instructions {
+    padding: 0 0 20px;
+  }
+
+  #output {
+    box-sizing: border-box;
+    padding: 1.5cm;
+  }
+
+  .qrcodes {
+    display: grid;
+    grid-auto-flow: column;
+  }
+
+  .qrcode {
+    display: grid;
+    margin: 0 1.5cm 1.5cm 0;
+  }
+
+  .qrcode>svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .qrcode>img {
+    width: 100%;
+    margin: 6% 0 0;
+  }
+
+  @media screen {
+    body {
+      padding: 20px;
+    }
+
+    #output.enabled {
+      width: 21cm;
+      height: 29.7cm;
+      box-shadow: 0 0 1cm rgba(0, 0, 0, 0.3);
+      transform: scale(0.3);
+      transform-origin: 0 0;
+    }
+  }
+
   @page {
     margin: 0;
     padding: 0;
   }
 
-  body {
-
-
-    margin: 0;
-    padding: 0;
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-  }
-
-  .qrcode {
-    padding: 5px 0;
-  }
-
   @media print {
-    div {
-      /* background: blue; */
+    body {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
     }
 
+    body>*:not(#output) {
+      display: none;
+    }
   }
 </style>
 
 <body>
-
-  <div>QR Codes generator</div>>
+  <div id="instructions">
+    <img src="images/gourlano-logo.svg">
+    <h3>Générateur de QR Codes à imprimer</h3>
+    <p>Collez votre lien ci dessous</p>
+    <input>
+    <button onclick="window.print();return false;" disabled>Imprimer</button>
+  </div>
+  <div id="output"></div>
 </body>
