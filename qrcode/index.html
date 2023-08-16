@@ -131,10 +131,6 @@ title: Générateur de QR Codes à imprimer
   }
 
   @media screen {
-    body {
-      padding: 20px;
-    }
-
     #output.enabled {
       width: 21cm;
       height: 29.7cm;
@@ -155,7 +151,14 @@ title: Générateur de QR Codes à imprimer
       print-color-adjust: exact !important;
     }
 
-    body>*:not(#output) {
+    .container {
+      max-width: none;
+    }
+
+    header,
+    nav,
+    footer,
+    .content>#instructions {
       display: none;
     }
   }
