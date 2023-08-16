@@ -1,7 +1,5 @@
 name: Crommerer
 markdown: kramdown
-include:
- - _pages/qrcode
 prose:
   metadata:
     _posts:
