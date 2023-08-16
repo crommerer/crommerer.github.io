@@ -1,5 +1,3 @@
-/*  rem calculator https://offroadcode.com/rem-calculator/ */
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -7,6 +5,7 @@
 
 body {
   font-family: "Yrsa", serif;
+  font-size: 1.25rem;
 }
 
 body,
@@ -64,35 +63,14 @@ nav ul li a.current {
 
 .content {
   padding: 14px 20px;
-  font-size: 1.25rem;
+}
+
+p {
+  text-align: justify;
 }
 
 footer {
   border-top: 1px solid #777;
   padding: 14px 20px;
   padding-top: calc(1.1rem);
-}
-
-#photoContainer {
-  position: relative;
-}
-
-#photo {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 1px solid #5e5e5e;
-}
-
-#photo img {
-  width: 100%;
-  top: -8%;
-  position: relative;
-}
-p {
-  text-align: justify;
 }
