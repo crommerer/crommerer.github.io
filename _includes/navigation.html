@@ -1,0 +1,21 @@
+{% assign current = page.path | downcase | split: '.' %}
+
+<nav>
+  <ul>
+    <li>
+      <a href="/" {% if current[0]=='index' %}class='current' {% endif %}>
+        Accueil
+      </a>
+    </li>
+    <li>
+      <a href="/about" {% if current[0]=='about' %}class='current' {% endif %}>
+        À propos
+      </a>
+    </li>
+    <li>
+      <a href="/articles" {% if current[0]=='articles' %}class='current' {% endif %}>
+        Articles
+      </a>
+    </li>
+  </ul>
+</nav>
