@@ -1,7 +1,7 @@
 {% assign current = page.path | downcase | split: '.' %}
 
 <header>
-  <img src="/images/gourlano-logo.svg" width="200">
+  <img src="/images/crommerer-logo.svg" width="200">
 </header>
 <nav>
   <ul>
@@ -11,13 +11,13 @@
       </a>
     </li>
     <li>
-      <a href="/about" {% if current[0]=='about' %}class='current' {% endif %}>
-        À propos
+      <a href="/articles" {% if current[0]=='articles' %}class='current' {% endif %}>
+        Articles
       </a>
     </li>
     <li>
-      <a href="/articles" {% if current[0]=='articles' %}class='current' {% endif %}>
-        Articles
+      <a href="/about" {% if current[0]=='about' %}class='current' {% endif %}>
+        À propos
       </a>
     </li>
   </ul>
