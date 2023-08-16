@@ -6,7 +6,7 @@
 }
 
 body {
-  font-family: 'Yrsa', serif;
+  font-family: "Yrsa", serif;
 }
 
 body,
@@ -14,7 +14,13 @@ a {
   color: rgba(50, 50, 50, 1);
 }
 
-h1, h2, h3 {
+header {
+  text-align: center;
+}
+
+h1,
+h2,
+h3 {
   margin-top: 0.3em;
 }
 

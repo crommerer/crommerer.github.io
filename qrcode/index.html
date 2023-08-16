@@ -22,7 +22,7 @@ title: Générateur de QR Codes à imprimer
 
   function addLogo(div) {
     const logo = document.createElement("img");
-    logo.src = 'images/gourlano-logo.svg';
+    logo.src = '/images/gourlano-logo.svg';
     div.appendChild(logo);
   }
 
@@ -100,7 +100,6 @@ title: Générateur de QR Codes à imprimer
   body {
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
   }
 
   #instructions {
@@ -164,7 +163,9 @@ title: Générateur de QR Codes à imprimer
 
 <div id="instructions">
   <h3>Générateur de QR Codes à imprimer</h3>
+  <br />
   <p>Collez votre lien ci dessous</p>
+  <br />
   <form>
     <input>
     <input type="submit" value="Imprimer" disabled />
