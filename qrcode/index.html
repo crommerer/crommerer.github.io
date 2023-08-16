@@ -1,6 +1,7 @@
-<title>Générateur de QR Codes à imprimer</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta charset="UTF-8">
+---
+layout: default
+title: Générateur de QR Codes à imprimer
+---
 <!-- https://github.com/datalog/qrcode-svg -->
 <script src="qrcode.min.js"></script>
 
@@ -161,15 +162,12 @@
   }
 </style>
 
-<body>
-  <div id="instructions">
-    <img src="images/gourlano-logo.svg">
-    <h3>Générateur de QR Codes à imprimer</h3>
-    <p>Collez votre lien ci dessous</p>
-    <form>
-      <input>
-      <input type="submit" value="Imprimer" disabled />
-    </form>
-  </div>
-  <div id="output"></div>
-</body>
+<div id="instructions">
+  <h3>Générateur de QR Codes à imprimer</h3>
+  <p>Collez votre lien ci dessous</p>
+  <form>
+    <input>
+    <input type="submit" value="Imprimer" disabled />
+  </form>
+</div>
+<div id="output"></div>
