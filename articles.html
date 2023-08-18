@@ -7,7 +7,9 @@ title: Articles
   {% for post in site.posts %}
   <li>
     <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-    (<span>{{ post.date | date_to_string }}</span>)
+    {% assign date_english = post.date | date_to_string %}
+    {% include date-french.html %}
+    (<span class="meta">{{ date_french }}</span>)
   </li>
   {% endfor %}
 </ul>
